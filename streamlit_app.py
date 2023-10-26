@@ -48,9 +48,25 @@ if streamlit.button("add fruit to list"):
   back_from_function = insert_row_snowflake(add_my_fruit)
   streamlit.text(back_from_function)
 
-streamlit.header("USAGE_IN_CURRENCY_DAILY View")
+streamlit.header("WAREHOUSE_METERING_HISTORY View")
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from SNOWFLAKE.ORGANIZATION_USAGE.WAREHOUSE_METERING_HISTORY")
-usage = my_cur.fetchall()
+usage = my_cur.fetchall(),
 streamlit.dataframe(usage)
+
+
+import pandas as pd
+from awesome_table import AwesomeTable
+from awesome_table.columns import (Column, ColumnDType)
+
+sample_data = {...}
+
+AwesomeTable(pd.json_normalize(sample_data), columns=[
+    Column(name='id', label='ID'),
+    Column(name='name', label='Name'),
+    Column(name='job_title', label='Job Title'),
+    Column(name='avatar', label='Avatar'),
+    Column(name='_url.social_media', label='Social Media', dtype=ColumnDType.ICONBUTTON, icon='fa-solid fa-share-nodes'), ## From FontAwesome v6.0.0
+    Column(name='_url.document', label='Document', dtype=ColumnDType.DOWNLOAD),
+], show_order=True, show_search=True, show_search_order_in_sidebar=True)
