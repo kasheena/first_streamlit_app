@@ -55,18 +55,3 @@ my_cur.execute("select * from SNOWFLAKE.ORGANIZATION_USAGE.WAREHOUSE_METERING_HI
 usage = my_cur.fetchall(),
 streamlit.dataframe(usage)
 
-
-import pandas as pd
-from awesome_table import AwesomeTable
-from awesome_table.columns import (Column, ColumnDType)
-
-sample_data = {...}
-
-AwesomeTable(pd.json_normalize(sample_data), columns=[
-    Column(name='id', label='ID'),
-    Column(name='name', label='Name'),
-    Column(name='job_title', label='Job Title'),
-    Column(name='avatar', label='Avatar'),
-    Column(name='_url.social_media', label='Social Media', dtype=ColumnDType.ICONBUTTON, icon='fa-solid fa-share-nodes'), ## From FontAwesome v6.0.0
-    Column(name='_url.document', label='Document', dtype=ColumnDType.DOWNLOAD),
-], show_order=True, show_search=True, show_search_order_in_sidebar=True)
