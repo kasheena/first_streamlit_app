@@ -52,6 +52,5 @@ streamlit.header("WAREHOUSE_METERING_HISTORY View")
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from SNOWFLAKE.ORGANIZATION_USAGE.WAREHOUSE_METERING_HISTORY")
-usage = my_cur.fetchall(),
+usage = my_cur.fetchall()
 streamlit.dataframe(usage)
-
