@@ -47,3 +47,10 @@ if streamlit.button("add fruit to list"):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   back_from_function = insert_row_snowflake(add_my_fruit)
   streamlit.text(back_from_function)
+
+streamlit.header("USAGE_IN_CURRENCY_DAILY View")
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("select * from ORGANIZATION_USAGE.USAGE_IN_CURRENCY_DAILY")
+usage = my_cur.fetchall()
+streamlit.dataframe(usage)
